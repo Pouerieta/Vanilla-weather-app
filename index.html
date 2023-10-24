@@ -14,36 +14,45 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-app">
-        <h1>New York</h1>
-        <ul>
-          <li>Sunday 11:21 AM</li>
-          <li>Clear</li>
-        </ul>
-        <div class="row">
-          <div class="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-              alt="Clear"
-            />
-            12°C | °F
-          </div>
-          <div class="col-6">
-            <ul>
-              <li>Precipitation: 0%</li>
-              <li>Humidity: 75%</li>
-              <li>Wind Speed: 2km/h</li>
-            </ul>
-            <small>
-              <a
-                href="https://github.com/Pouerieta/Vanilla-weather-app"
-                target="_blank"
-                >Open-source code, by Ashley Poueriet
-              </a>
-            </small>
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <h1>New York</h1>
+          <ul>
+            <li>Sunday 11:21 AM</li>
+            <li>Clear</li>
+          </ul>
+          <div class="row">
+            <div class="col-6">
+              <div class="weather-temperature">
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+                  alt="Clear"
+                  class="float-left"
+                />
+                <div class="float-left"></div>
+                <div>
+                  <div class="temperature"><strong> 12</strong></div>
+                  <small class="units"> °C | °F </small>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Precipitation: 0%</li>
+                <li>Humidity: 75%</li>
+                <li>Wind Speed: 2km/h</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+      <small>
+        <a
+          href="https://github.com/Pouerieta/Vanilla-weather-app"
+          target="_blank"
+          >Open-source code, by Ashley Poueriet
+        </a>
+      </small>
     </div>
     <script src="src/index.js"></script>
   </body>
