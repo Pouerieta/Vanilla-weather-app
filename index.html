@@ -17,6 +17,25 @@
     <div class="container">
       <div class="weather-app-wrapper">
         <div class="weather-app">
+          <form id="search-form" class="nb-3">
+            <div class="row">
+              <div class="col-9">
+                <input
+                  type="search"
+                  placeholder="Type a city.."
+                  class="form-control"
+                  id="city-input"
+                />
+              </div>
+              <div class="col-3">
+                <input
+                  type="submit"
+                  value="search"
+                  class="btn-btn-primary w-100"
+                />
+              </div>
+            </div>
+          </form>
           <h1 id="city">New York</h1>
           <ul>
             <li id="date">Sunday 11:21 AM</li>
@@ -28,6 +47,7 @@
                 <img
                   src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
                   alt="Clear"
+                  id="icon"
                   class="float-left"
                 />
                 <div class="float-left"></div>
@@ -42,7 +62,7 @@
             <div class="col-6">
               <ul>
                 <li>Humidity: <span id="humidity"></span></li>
-                <li>Wind Speed: <span id="Wind"></span> Km/H</li>
+                <li>Wind Speed: <span id="wind"></span> Km/H</li>
               </ul>
             </div>
           </div>
