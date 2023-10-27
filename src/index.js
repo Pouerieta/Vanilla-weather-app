@@ -33,11 +33,9 @@ function showTemperature(response) {
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   cityElement.innerHTML = response.data.city;
   descriptionElement.innerHTML = response.data.condition.description;
-  humidityElement.innerHTML = response.data.main.humidity;
-  cityElement.innerHTML = response.data.city;
+  humidityElement.innerHTML = response.data.temperature.humidity;
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  cityElement.innerHTML = response.data.city;
-  dateElement.innerHTML = formatDate(response.data.dt);
+  dateElement.innerHTML = formatDate(response.data.time);
 }
 
 let apiKey = "8476te1bf3d09d0bo93fc14adf032bbf";
