@@ -79,7 +79,6 @@ function displayForecast() {
               <div class="weather-forecast-temperature">9°</div>
             </div>`;
   });
-
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
