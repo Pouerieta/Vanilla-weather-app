@@ -86,7 +86,7 @@ function displayForecast() {
 let celsiusTemperature = null;
 
 search("New York");
-displayForcast();
+displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
