@@ -76,3 +76,6 @@ li {
 .weather-forcast-temperature-min {
   opacity: 0.6;
 }
+.weather-forecast-icon {
+  width: 24px;
+}

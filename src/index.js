@@ -39,6 +39,8 @@ function showTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.time);
   iconElement.setAttribute("src", response.data.condition.icon_url);
+
+  getForecast(response.data.city);
 }
 
 function search(city) {
@@ -63,30 +65,39 @@ function displayCelsiusTemperature(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
-function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+function displayForecast(response) {
+  console.log(response.data);
+
   let forecastHtml = "";
-  days.forEach(function (day) {
+
+  response.data.daily.forEach(function (day) {
     forecastHtml =
       forecastHtml +
       `<div class="weather-forecast-day">
-            <div class="weather-forecast-date">${day}</div>
-            <div class="weather-forecast-icon">🌤</div>
+            <div class="weather-forecast-date">Tue</div>
+            <div class="weather-forecast-icon">
+            <img src="${day.condition.icon_url}"</div>
             <div class="weather-forecast-temperatures">
               <div class="weather-forecast-temperature">
-                <strong>15°</strong>
+                <strong>${Math.round(day.temperature.maximum)}°</strong>
               </div>
-              <div class="weather-forecast-temperature">9°</div>
+              <div class="weather-forecast-temperature">${Math.round(
+                day.temperature.minimum
+              )}°</div>
             </div>`;
   });
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = forecastHtml;
 }
+function getForecast(city) {
+  let apiKey = "8476te1bf3d09d0bo93fc14adf032bbf";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
+  axios(apiUrl).then(displayForecast);
+}
 
 let celsiusTemperature = null;
 
 search("New York");
-displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
