@@ -42,6 +42,12 @@ function showTemperature(response) {
   console.log(response.data);
   getForecast(response.data.coordinates);
 }
+function forecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
 
 function getForecast(coordinates) {
   console.log(coordinates);
@@ -92,7 +98,7 @@ function displayForecast(response) {
           alt=""
           width="42"
         />
-        <div class="weather-forecast-temperatures">
+        <div class="weather-forecast-temperatures">${forecastDay(day.time)}
           <span class="weather-forecast-temperature-max"> ${Math.round(
             forecastDay.temp.max
           )}° </span>
