@@ -39,8 +39,15 @@ function showTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
   dateElement.innerHTML = formatDate(response.data.time);
   iconElement.setAttribute("src", response.data.condition.icon_url);
+  console.log(response.data);
+  getForecast(response.data.coordinates);
+}
 
-  getForecast(response.data.city);
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "5293d8454b519c30f6f6331f38c85b4c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function search(city) {
@@ -66,38 +73,46 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 function displayForecast(response) {
-  console.log(response.data);
+  let forecast = response.data.daily;
 
-  let forecastHtml = "";
-
-  response.data.daily.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `<div class="weather-forecast-day">
-            <div class="weather-forecast-date">Tue</div>
-            <div class="weather-forecast-icon">
-            <img src="${day.condition.icon_url}"</div>
-            <div class="weather-forecast-temperatures">
-              <div class="weather-forecast-temperature">
-                <strong>${Math.round(day.temperature.maximum)}°</strong>
-              </div>
-              <div class="weather-forecast-temperature">${Math.round(
-                day.temperature.minimum
-              )}°</div>
-            </div>`;
-  });
   let forecastElement = document.querySelector("#forecast");
-  forecastElement.innerHTML = forecastHtml;
-}
-function getForecast(city) {
-  let apiKey = "8476te1bf3d09d0bo93fc14adf032bbf";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}`;
-  axios(apiUrl).then(displayForecast);
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+
+        <img
+          src="http://openweathermap.org/img/wn/${
+            forecastDay.weather[0].icon
+          }@2x.png"
+          alt=""
+          width="42"
+        />
+        <div class="weather-forecast-temperatures">
+          <span class="weather-forecast-temperature-max"> ${Math.round(
+            forecastDay.temp.max
+          )}° </span>
+          <span class="weather-forecast-temperature-min"> ${Math.round(
+            forecastDay.temp.min
+          )}° </span>
+        </div>
+      </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 let celsiusTemperature = null;
 
 search("New York");
+// displayForecast();
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);

@@ -70,12 +70,12 @@ li {
   text-align: center;
 }
 .weather-forcast-date {
-  font-size: 16px;
+  font-size: 10px;
   color: #000;
 }
 .weather-forcast-temperature-min {
   opacity: 0.6;
 }
-.weather-forecast-icon {
-  width: 24px;
+.weather-forecast-icon img {
+  width: px;
 }
