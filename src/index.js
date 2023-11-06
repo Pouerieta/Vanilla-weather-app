@@ -42,11 +42,11 @@ function showTemperature(response) {
   console.log(response.data);
   getForecast(response.data.coordinates);
 }
-
 function getForecast(coordinates) {
   console.log(coordinates);
-  let apiKey = "5293d8454b519c30f6f6331f38c85b4c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&units=metric`;
+  let apiKey = "bd79ao40tde3dec118ca46bc3e6dd55f";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}`;
+  console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
 
@@ -59,6 +59,12 @@ function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   search(cityInputElement.value);
+}
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
 }
 
 function displayFahrentheitTemperature(event) {
@@ -86,18 +92,17 @@ function displayForecast(response) {
       <div class="col-2">
 
         <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDay.weather[0].icon
-          }@2x.png"
+          src="${forecastDay.condition.icon_url}"
           alt=""
           width="42"
         />
+        
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> ${Math.round(
-            forecastDay.temp.max
+            forecastDay.temperature.maximum
           )}° </span>
           <span class="weather-forecast-temperature-min"> ${Math.round(
-            forecastDay.temp.min
+            forecastDay.temperature.minimum
           )}° </span>
         </div>
       </div>
